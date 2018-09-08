@@ -21,7 +21,10 @@
   },
   "homepage": "https://github.com/fionaw237/Group_Project_Squirrels#readme",
   "dependencies": {
+    "express": "^4.16.3",
     "mocha": "^5.2.0",
+    "mongodb": "^3.1.4",
+    "nodemon": "^1.18.4",
     "webpack": "^4.17.2",
     "webpack-cli": "^3.1.0"
   }

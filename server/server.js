@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-require('mongodb').MongoClient;
+const MongoClient = require('mongodb').MongoClient;
 const createRouter = require('./helpers/create_router.js');
 const parser = require('body-parser');
 
@@ -12,9 +12,9 @@ app.use(parser.json());
 MongoClient.connect('mongodb://localhost:27017')
 .then((client) => {
   const db = client.db('squirell');
-  const itemsCollection = db.collection('items');
-  const itemsRouter = createRouter(itemsCollection);
-  app.use('/api/items', itemsRouter);
+  const sightingsCollection = db.collection('sightings');
+  const sightingsRouter = createRouter(sightingsCollection);
+  app.use('/api/sightings', sightingsRouter);
 })
 .catch(console.err);
 
