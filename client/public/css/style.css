@@ -11,7 +11,6 @@
   height: 500px;
   margin: 10px;
   text-align: center;
-  line-height: 75px;
   font-size: 30px;
 }
 
@@ -22,15 +21,38 @@
   height: 500px;
   margin: 10px;
   text-align: center;
-  line-height: 75px;
+  font-size: 30px;
+}
+
+#footer{
+  display: flex;
+}
+
+#button-add-sighting {
+    display: inline-block;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    background-color: red;
+    font-colour: white;
+    font-size: 30px;
+}
+
+#button-info {
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  background-color: blue;
+  font-colour: white;
   font-size: 30px;
 }
 
 
-
-
 #slider-container {
-    width: 100%; /* Width of the outside container */
+  flex: 1;
+    width: auto; /* Width of the outside container */
+    display: inline-block;
 }
 
 /* The slider itself */
