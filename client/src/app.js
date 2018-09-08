@@ -1,6 +1,10 @@
 const Sightings = require('./models/sightings.js');
 const SightingFormView = require('./views/sighting_form_view.js');
-const ChartView = require('./views/chart_view.js')
+
+const ChartView = require('./views/chart_view.js');
+
+const MapView = require('./views/map_view.js');
+
 
 document.addEventListener('DOMContentLoaded', () => {
   // const form = document.querySelector('#new-sighting-form');
@@ -11,8 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const chartView = new ChartView(mainChart);
   chartView.bindEvents()
 
-
   const sightingsData = new Sightings();
   sightingsData.setUpEventListeners();
-  console.log("Testing app.js");
+
+
 });
