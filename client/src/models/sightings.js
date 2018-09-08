@@ -15,7 +15,7 @@ Sightings.prototype.setUpEventListeners = function(){
 };
 
 
-this.prototype.add = function(item){
+Sightings.prototype.add = function(item){
   this.request
   .post(item)
   .then((sightings) => {
