@@ -14,7 +14,7 @@ const MapView = function(container){
 
 MapView.prototype.bindEvents = function () {
 
-  PubSub.subscribe('Sightings:all-map-data-loaded', (event) => {
+  PubSub.subscribe('Sightings:selected-year-data-ready', (event) => {
     console.log(event.detail);
   })
 };

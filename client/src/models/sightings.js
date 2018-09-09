@@ -34,4 +34,12 @@ Sightings.prototype.add = function(item){
   .catch((err) => console.error(err));
 }
 
+Sightings.prototype.filterByYear = function(year){
+  PubSub.subscribe('Sightings:all-map-data-loaded', () => {
+    const sightingsByYear = this.items.filter(item => item.Startdateyear === year);
+    PubSub.publish('Sightings:selected-year-data-ready', sightingsByYear);
+  })
+
+}
+
 module.exports = Sightings;
