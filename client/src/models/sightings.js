@@ -3,7 +3,7 @@ const PubSub = require('../helpers/pub_sub.js');
 
 const Sightings = function(){
   this.items = [];
-  this.request = new Request('/api/squirrels');
+  this.request = new Request('/api/sightings');
 };
 
 Sightings.prototype.setUpEventListeners = function(){

@@ -2,6 +2,7 @@ const PubSub = require('../helpers/pub_sub.js');
 
 const MapView = function(container){
   this.container = container;
+
   this.coords = [55.0, -3.5]; //  centres default view to UK
   this.map = L.map(this.container);
   this.osmLayer = new L.TileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png");
@@ -17,5 +18,6 @@ MapView.prototype.bindEvents = function () {
     console.log(event.detail);
   })
 };
+
 
 module.exports = MapView;
