@@ -45,11 +45,20 @@ Sightings.prototype.filterByYear = function(year){
 Sightings.prototype.getChartData = function(){
   PubSub.subscribe('Sightings:selected-year-data-ready', (event) => {
     this.sightingsByYear = event.detail;
-    const chartDataArray = this.createChartArray()
-    PubSub.publish('Sightings:selected-year-chart-data-ready', chartDataArray)
-  })
-  
-}
+    const chartDataArray = this.createChartArray();
+    PubSub.subscribe('SelectView:chosen-country', (event) => {
+      const chosenOption = event.detail;
+      if (chosenOption === "All"){
+        var chartData = chartDataArray;
+      }
+      else {
+        var  chartData = this.getSelectedCountry(chartDataArray, chosenOption);
+      }
+      PubSub.publish('Sightings:selected-year-chart-data-ready', chartData);
+    });
+  });
+
+};
 
 Sightings.prototype.filterByCountry = function(country){
   return this.sightingsByYear.filter(item => item["State/Province"] === country);
@@ -81,6 +90,10 @@ Sightings.prototype.createChartArray = function(){
     dataArray.push(countryObject)
   });
   return dataArray;
+}
+
+Sightings.prototype.getSelectedCountry = function(array, value){
+  return array.filter(object => object.name === value);
 }
 
 module.exports = Sightings;
