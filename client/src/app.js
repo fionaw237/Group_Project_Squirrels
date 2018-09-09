@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const sightingsData = new Sightings();
   sightingsData.setUpEventListeners();
+  sightingsData.getChartData();
   sightingsData.filterByYear("2017");
   sightingsData.getData();
 
