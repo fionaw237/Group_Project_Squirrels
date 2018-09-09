@@ -32,4 +32,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const handleButtonClick = function () {
 document.getElementById('popup-container').style.display = "block";
+document.getElementById('map-container').style.display = "none";
 };

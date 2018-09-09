@@ -22,6 +22,8 @@ SightingFormView.prototype.setUpEventListeners = function(){
 
     PubSub.publish('SightingFormView:sighting-submitted', newSighting);
     form.reset();
+    window.location.replace("/")
+
   });
 };
 
