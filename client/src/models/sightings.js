@@ -48,14 +48,13 @@ Sightings.prototype.getChartData = function(){
     const chartDataArray = this.createChartArray();
     PubSub.subscribe('SelectView:chosen-country', (event) => {
       const chosenOption = event.detail;
-      // const selectedIndex = this.getIndex(chartDataArray, chosenOption);
-      // if (selectedIndex === 4){
-      //   const chartData = chartDataArray;
-      // }
-      // else {
-      //   const chartData = chartDataArray[selectedIndex];
-      // }
-      // PubSub.publish('Sightings:selected-year-chart-data-ready', chartData)
+      if (chosenOption === "All"){
+        var chartData = chartDataArray;
+      }
+      else {
+        var  chartData = this.getSelectedCountry(chartDataArray, chosenOption);
+      }
+      PubSub.publish('Sightings:selected-year-chart-data-ready', chartData);
     });
   });
 
@@ -93,8 +92,8 @@ Sightings.prototype.createChartArray = function(){
   return dataArray;
 }
 
-// Sightings.prototype.getIndex = function(array, value){
-//
-// }
+Sightings.prototype.getSelectedCountry = function(array, value){
+  return array.filter(object => object.name === value);
+}
 
 module.exports = Sightings;
