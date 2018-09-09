@@ -24,6 +24,12 @@ body{
   z-index: 10;
 }
 
+
+#form-map-container{
+  height: 400px;
+  width: 400px;
+}
+
 #map-container{
   flex: 1 0 500px;
   /* background-color: #f1f1f1; */
