@@ -45,9 +45,10 @@ Sightings.prototype.filterByYear = function(year){
 Sightings.prototype.getChartData = function(){
   PubSub.subscribe('Sightings:selected-year-data-ready', (event) => {
     this.sightingsByYear = event.detail;
-    this.createChartArray()
+    const chartDataArray = this.createChartArray()
+    PubSub.publish('Sightings:selected-year-chart-data-ready', chartDataArray)
   })
-  // Sightings:selected-year-chart-data-ready
+  
 }
 
 Sightings.prototype.filterByCountry = function(country){
@@ -79,9 +80,7 @@ Sightings.prototype.createChartArray = function(){
 
     dataArray.push(countryObject)
   });
-
   return dataArray;
-
 }
 
 module.exports = Sightings;
