@@ -7,7 +7,11 @@ const ChartView = function(container){
 
 ChartView.prototype.bindEvents = function() {
 
-  this.renderChart()
+    PubSub.subscribe('Sightings:selected-year-data-ready', (event) => {
+      console.log(event.detail);
+    })
+
+  this.renderChart();
 }
 
 ChartView.prototype.renderChart = function () {
