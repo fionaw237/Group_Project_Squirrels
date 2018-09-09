@@ -14,6 +14,15 @@ Sightings.prototype.setUpEventListeners = function(){
   });
 };
 
+Sightings.prototype.getData = function(){
+  this.request
+    .get()
+    .then((sightings) => {
+      this.items = sightings;
+      PubSub.publish('Sightings:all-map-data-loaded', this.items);
+    })
+    .catch((err) => console.error(err));
+}
 
 Sightings.prototype.add = function(item){
   this.request

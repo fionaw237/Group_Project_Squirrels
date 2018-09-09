@@ -5,6 +5,10 @@
 }
 
 
+#popup-container{
+  display:none;
+}
+
 #map-container{
   flex: 1 0 500px;
   /* background-color: #f1f1f1; */
