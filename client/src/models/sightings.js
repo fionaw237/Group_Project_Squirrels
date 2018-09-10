@@ -15,7 +15,7 @@ Sightings.prototype.setUpEventListeners = function(){
   });
 };
 
-Sightings.prototype.getData = function(){
+Sightings.prototype.getSeededData = function(){
   this.request
     .get()
     .then((sightings) => {
@@ -42,19 +42,28 @@ Sightings.prototype.filterByYear = function(year){
   })
 }
 
-Sightings.prototype.getChartData = function(){
+Sightings.prototype.getPlottingData = function(){
   PubSub.subscribe('Sightings:selected-year-data-ready', (event) => {
     this.sightingsByYear = event.detail;
+    PubSub.publish('Sightings:selected-year-map-data-ready', this.sightingsByYear);
     const chartDataArray = this.createChartArray();
+    PubSub.publish('Sightings:selected-year-chart-data-ready', chartDataArray);
+    PubSub.publish('Sightings:total-sightings-number-ready', this.sightingsByYear.length);
+
     PubSub.subscribe('SelectView:chosen-country', (event) => {
+
       const chosenOption = event.detail;
       if (chosenOption === "All"){
         var chartData = chartDataArray;
+        var mapData = this.sightingsByYear;
       }
       else {
-        var  chartData = this.getSelectedCountry(chartDataArray, chosenOption);
+        var chartData = this.getChartDataByCountry(chartDataArray, chosenOption);
+        var mapData = this.filterByCountry(chosenOption);
       }
       PubSub.publish('Sightings:selected-year-chart-data-ready', chartData);
+      PubSub.publish('Sightings:selected-year-map-data-ready', mapData);
+      PubSub.publish('Sightings:total-sightings-number-ready', mapData.length);
     });
   });
 
@@ -92,7 +101,7 @@ Sightings.prototype.createChartArray = function(){
   return dataArray;
 }
 
-Sightings.prototype.getSelectedCountry = function(array, value){
+Sightings.prototype.getChartDataByCountry = function(array, value){
   return array.filter(object => object.name === value);
 }
 
