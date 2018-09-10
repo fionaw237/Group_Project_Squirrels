@@ -8,21 +8,29 @@ const FormMapView = function(container){
   this.osmLayer = new L.TileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png");
   this.map.setView(this.coords, 5).addLayer(this.osmLayer); // note '5' is zoom level
   this.mapMarkers = [];
+  this.coords = [];
+
+  // this.map.on('click',
+  //         function(e){
+  //           var coord = e.latlng.toString().split(',');
+  //           var lat = coord[0].split('(');
+  //           var lng = coord[1].split(')');
+  //           this.coords = [lat[1], lng[0].replace(/\s+/, "")]; //strips whitespace
+  //           });
+}
+
+FormMapView.prototype.bindEvents = function () {
+
+  this.map.on('click',
+          function(e){
+            var coord = e.latlng.toString().split(',');
+            var lat = coord[0].split('(');
+            var lng = coord[1].split(')');
+            this.coords = [lat[1], lng[0].replace(/\s+/, "")]; //strips whitespace
+
+  PubSub.publish('FormMapView:coords-ready', this.coords);
+  });
 };
-
-
-
-// FormMapView.prototype.bindEvents = function () {
-
-  // //first clear this.markers of any markers in place
-  //   for(var i = 0; i < this.mapMarkers.length; i++){
-  //   this.map.removeLayer(this.mapMarkers[i]);
-  //   }
-  //
-  //   //then add a new marker to the this.mapMarkers array and then the map
-  //   const marker = L.marker(coordinates);
-  //   this.mapMarkers.push(marker);
-  //   marker.addTo(this.map);
 
 
 module.exports = FormMapView;

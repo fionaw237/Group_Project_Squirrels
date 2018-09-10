@@ -2,9 +2,18 @@ const PubSub = require('../helpers/pub_sub.js');
 
 const SightingFormView = function(element){
   this.element = element;
-}
+  this.lat =[];
+  this.long = [];
+};
 
 SightingFormView.prototype.setUpEventListeners = function(){
+
+  PubSub.subscribe('FormMapView:coords-ready', (event) => {
+    this.lat = event.detail[0];
+    this.long = event.detail[1];
+  });
+
+
   this.element.addEventListener('submit', (event) => {
     event.preventDefault();
     const form = event.target;
@@ -14,15 +23,17 @@ SightingFormView.prototype.setUpEventListeners = function(){
       "name": form['name-field'].value,
       "Startdateyear": null,
       "Startdatemonth": null,
-      "Latitude(WGS84)": null,
-      "Longitude(WGS84)": null,
+      "Latitude(WGS84)": this.lat,
+      "Longitude(WGS84)": this.long,
       "Individualcount": form['count-field'].value,
       "State/Province": form['country-field'].value
     };
 
-    PubSub.publish('SightingFormView:sighting-submitted', newSighting);
-    form.reset();
-    window.location.replace("/")
+    console.log("new sighting is:", newSighting);
+
+    // PubSub.publish('SightingFormView:sighting-submitted', newSighting);
+    // form.reset();
+    // window.location.replace("/")
 
   });
 };

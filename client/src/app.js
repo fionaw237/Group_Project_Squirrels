@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const formMap = document.querySelector('#form-map-container');
   const formMapView = new FormMapView(formMap);
-  // formMapView.bindEvents();
+  formMapView.bindEvents();
 
   const mainChart = document.querySelector('#chart-container');
   const chartView = new ChartView(mainChart);
