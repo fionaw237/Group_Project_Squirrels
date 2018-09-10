@@ -46,6 +46,7 @@ Sightings.prototype.getChartData = function(){
   PubSub.subscribe('Sightings:selected-year-data-ready', (event) => {
     this.sightingsByYear = event.detail;
     const chartDataArray = this.createChartArray();
+    PubSub.publish('Sightings:selected-year-chart-data-ready', chartDataArray);
     PubSub.subscribe('SelectView:chosen-country', (event) => {
       const chosenOption = event.detail;
       if (chosenOption === "All"){
