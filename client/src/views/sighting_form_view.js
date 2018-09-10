@@ -5,6 +5,7 @@ const SightingFormView = function(element){
   this.element = element;
   this.lat =[];
   this.long = [];
+  this.country = "";
 };
 
 SightingFormView.prototype.setUpEventListeners = function(){
@@ -12,7 +13,11 @@ SightingFormView.prototype.setUpEventListeners = function(){
   PubSub.subscribe('FormMapView:coords-ready', (event) => {
     this.lat = event.detail[0];
     this.long = event.detail[1];
-    this.getCountry(this.lat, this.long);
+  });
+
+  PubSub.subscribe('Sightings:Country-from-API', (event) => {
+    this.country = event.detail;
+    console.log("Selected Country is:", this.country);
   });
 
 
@@ -42,16 +47,6 @@ SightingFormView.prototype.setUpEventListeners = function(){
   });
 };
 
-SightingFormView.prototype.getCountry = function (lat, long) {
-  const request = new Request(`http://api.geonames.org/countrySubdivisionJSON?lat=${lat}&lng=${long}&username=supersquirrels`);
-  request.get()
-      .then((data) => {
-        console.log("Country is:", data.adminName1);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-};
 
 
 module.exports = SightingFormView;
