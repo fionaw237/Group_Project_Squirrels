@@ -73,7 +73,6 @@ const options = {
 
 };
 
-console.log(this.chartData);
 Highcharts.chart(this.container, options)
 };
 

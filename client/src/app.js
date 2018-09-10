@@ -30,9 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const sightingsData = new Sightings();
   sightingsData.setUpEventListeners();
-  sightingsData.getChartData();
+  sightingsData.getPlottingData();
   sightingsData.filterByYear("2017");
-  sightingsData.getData();
+  sightingsData.getSeededData();
 
 });
 
