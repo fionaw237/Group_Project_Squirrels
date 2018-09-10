@@ -13,6 +13,14 @@ const FormMapView = function(container){
 
 FormMapView.prototype.bindEvents = function () {
 
+  //required to refesh tiles when add form popup is loaded, otherwise tiles dont display properly
+  const addButton = document.querySelector('#button-add-sighting');
+  addButton.addEventListener('click',() => {
+    this.map.invalidateSize()
+  });
+
+
+
   const locateMeButton = document.querySelector('#locate-me-button');
   locateMeButton.addEventListener('click', () => {
     this.getLocation()
@@ -59,7 +67,9 @@ FormMapView.prototype.getLocation =function() {
         this.map.locate({setView: true, maxZoom: 16});
      }
 
+FormMapView.prototype.refreshMap = function () {
 
+}
 
 
 module.exports = FormMapView;
