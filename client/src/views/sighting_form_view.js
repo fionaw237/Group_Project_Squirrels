@@ -37,13 +37,19 @@ SightingFormView.prototype.setUpEventListeners = function(){
     };
 
     if (this.lat.length === 0 || this.long.length === 0) {
-    alert ("Please click on the map to place a location, or use 'Get my Location'.")}
-    else {
-    PubSub.publish('SightingFormView:sighting-submitted', newSighting);
-    form.reset();
-    window.location.replace("/");
-  }
+    alert ("No location detected - Please click on the map to place a location, or use 'Locate Me!' button.")}
 
+    else if( confirm(`Do you wish to submit:
+      Spotter Name: ${form['name-field'].value},
+      Spotted In: ${this.country},
+      Spotted On: ${form['date-field'].value},
+      Number of Squirrels Spotted: ${form['count-field'].value}`))
+      {
+        // PubSub.publish('SightingFormView:sighting-submitted', newSighting);
+        // form.reset();
+        // window.location.replace("/");
+        console.log(newSighting); }
+    else {alert ("Sighting Not Submitted!")}
   });
 };
 
