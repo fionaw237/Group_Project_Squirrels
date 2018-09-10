@@ -5,9 +5,25 @@ const SliderView = function(element){
 }
 
 SliderView.prototype.bindEvents = function(){
-  this.element.addEventListener('change', (event) => {
-    console.log(event.target.value);
-  })
+
+  PubSub.subscribe('Sightings:earliest/latest-year-data-ready', (event) => {
+    this.earliestYear = event.detail[0];
+    this.latestYear = event.detail[1];
+
+    this.element.min = this.earliestYear;
+    this.element.max = this.latestYear;
+
+    this.element.addEventListener('change', (event) => {
+      const selectedYear = event.target.value;
+      PubSub.publish('SliderView:selected-year-ready', selectedYear);
+    })
+
+  });
+
+
+
+
+
 }
 
 module.exports = SliderView;

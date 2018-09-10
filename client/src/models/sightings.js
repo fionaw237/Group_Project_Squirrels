@@ -13,6 +13,12 @@ Sightings.prototype.setUpEventListeners = function(){
     console.log(newSighting);
     this.add(newSighting);
   });
+
+  PubSub.subscribe('SliderView:selected-year-ready', (event) => {
+    const selectedYear = event.detail;
+    this.refilterByYear(selectedYear)
+  })
+
 };
 
 Sightings.prototype.getSeededData = function(){
@@ -20,7 +26,11 @@ Sightings.prototype.getSeededData = function(){
     .get()
     .then((sightings) => {
       this.items = sightings;
+      this.getDefaultYear(this.defaultYear)
       PubSub.publish('Sightings:all-map-data-loaded', this.items);
+      this.earliestYear = this.getEarliestYear(this.items);
+      this.latestYear = this.getLatestYear(this.items);
+      PubSub.publish('Sightings:earliest/latest-year-data-ready', [this.earliestYear, this.latestYear]);
     })
     .catch((err) => console.error(err));
 }
@@ -35,11 +45,16 @@ Sightings.prototype.add = function(item){
   .catch((err) => console.error(err));
 }
 
-Sightings.prototype.filterByYear = function(year){
+Sightings.prototype.getDefaultYear = function(year){
   PubSub.subscribe('Sightings:all-map-data-loaded', () => {
     this.sightingsByYear = this.items.filter(item => item.Startdateyear === year);
     PubSub.publish('Sightings:selected-year-data-ready', this.sightingsByYear);
   })
+}
+
+Sightings.prototype.refilterByYear = function(year){
+  this.sightingsByYear = this.items.filter(item => item.Startdateyear === year);
+  PubSub.publish('Sightings:selected-year-data-ready', this.sightingsByYear);
 }
 
 Sightings.prototype.getPlottingData = function(){
@@ -103,6 +118,21 @@ Sightings.prototype.createChartArray = function(){
 
 Sightings.prototype.getChartDataByCountry = function(array, value){
   return array.filter(object => object.name === value);
+}
+
+Sightings.prototype.getAllYears = function(data){
+  const allYears = [...new Set(data.map(object => object.Startdateyear))];
+  return allYears.filter(year => year != "");
+}
+
+Sightings.prototype.getEarliestYear = function(data){
+  const allYears = this.getAllYears(data);
+  return Math.min(...allYears);
+}
+
+Sightings.prototype.getLatestYear = function(data){
+  const allYears = this.getAllYears(data);
+  return Math.max(...allYears);
 }
 
 module.exports = Sightings;
