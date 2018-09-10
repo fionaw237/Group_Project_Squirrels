@@ -29,7 +29,7 @@ const options = {
     text: 'Squirrel Sightings'
   },
   subtitle: {
-    text: 'Source: WorldClimate.com'
+    text: 'Source: registry.nbnatlas.org'
   },
   xAxis: {
     categories: [
@@ -73,7 +73,6 @@ const options = {
 
 };
 
-console.log(this.chartData);
 Highcharts.chart(this.container, options)
 };
 
