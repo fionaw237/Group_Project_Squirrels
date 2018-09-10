@@ -29,7 +29,7 @@ const options = {
     text: 'Squirrel Sightings'
   },
   subtitle: {
-    text: 'Source: WorldClimate.com'
+    text: 'Source: registry.nbnatlas.org'
   },
   xAxis: {
     categories: [
