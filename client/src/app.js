@@ -2,8 +2,8 @@ const Sightings = require('./models/sightings.js');
 const SightingFormView = require('./views/sighting_form_view.js');
 const MapView = require('./views/map_view.js');
 const SelectView = require('./views/select_view.js');
-
 const ChartView = require('./views/chart_view.js');
+const SliderView = require('./views/slider_view.js');
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -29,10 +29,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const chartView = new ChartView(mainChart);
   chartView.bindEvents();
 
-
   const mainMap = document.querySelector('#map-container');
   const mapView = new MapView(mainMap);
   mapView.bindEvents();
+
+  const slider = document.querySelector('#year-slider');
+  const sliderView = new SliderView(slider);
+  sliderView.bindEvents();
 
   const sightingsData = new Sightings();
   sightingsData.setUpEventListeners();
