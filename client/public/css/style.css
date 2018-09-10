@@ -1,5 +1,5 @@
 body{
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 
@@ -22,6 +22,12 @@ body{
   background-color:#313131;
   overflow:auto
   z-index: 10;
+}
+
+
+#form-map-container{
+  height: 400px;
+  width: 400px;
 }
 
 #map-container{
