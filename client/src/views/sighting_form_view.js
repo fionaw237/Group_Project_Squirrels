@@ -1,4 +1,5 @@
 const PubSub = require('../helpers/pub_sub.js');
+const Request = require('../helpers/request.js');
 
 const SightingFormView = function(element){
   this.element = element;
@@ -11,6 +12,7 @@ SightingFormView.prototype.setUpEventListeners = function(){
   PubSub.subscribe('FormMapView:coords-ready', (event) => {
     this.lat = event.detail[0];
     this.long = event.detail[1];
+    this.getCountry(this.lat, this.long);
   });
 
 
@@ -30,14 +32,26 @@ SightingFormView.prototype.setUpEventListeners = function(){
     };
 
     if (this.lat.length === 0 || this.long.length === 0) {
-    alert ("Please click on the map to place a location.") }
+    alert ("Please click on the map to place a location, or use 'Get my Location'.")}
     else {
     PubSub.publish('SightingFormView:sighting-submitted', newSighting);
     form.reset();
-    window.location.replace("/")
+    window.location.replace("/");
   }
 
   });
 };
+
+SightingFormView.prototype.getCountry = function (lat, long) {
+  const request = new Request(`http://api.geonames.org/countrySubdivisionJSON?lat=${lat}&lng=${long}&username=supersquirrels`);
+  request.get()
+      .then((data) => {
+        console.log("Country is:", data.adminName1);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+};
+
 
 module.exports = SightingFormView;
