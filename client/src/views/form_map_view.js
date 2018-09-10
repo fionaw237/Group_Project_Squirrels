@@ -30,7 +30,6 @@ FormMapView.prototype.bindEvents = function () {
             const marker = L.marker(toPublish);
             marker.addTo(this.markerGroup)
             this.markerGroup.addTo(this)
-            console.log(toPublish);
             PubSub.publish('FormMapView:coords-ready', toPublish);
   });
 };
@@ -46,7 +45,6 @@ FormMapView.prototype.onLocationFound = function(e) {
         const lat = coord[0].split('(');
         const lng = coord[1].split(')');
         const toPublish = [lat[1], lng[0].replace(/\s+/, "")]; //strips whitespace
-        console.log(toPublish);
         PubSub.publish('FormMapView:coords-ready', toPublish);
      }
 
