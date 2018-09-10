@@ -6,15 +6,15 @@ const SliderView = function(element){
 
 SliderView.prototype.bindEvents = function(){
 
-  PubSub.subscribe('Sightings:earliest/latest-year-data-ready', (event) => {
-    this.earliestYear = event.detail[0];
-    this.latestYear = event.detail[1];
+  PubSub.subscribe('Sightings:unique-years-array-ready', (event) => {
+    const sliderYears = event.detail.sort();
 
-    this.element.min = this.earliestYear;
-    this.element.max = this.latestYear;
+    this.element.min = Math.min(...sliderYears);
+    this.element.max = Math.max(...sliderYears);
 
     this.element.addEventListener('change', (event) => {
       const selectedYear = event.target.value;
+      console.log(selectedYear);
       PubSub.publish('SliderView:selected-year-ready', selectedYear);
     })
 

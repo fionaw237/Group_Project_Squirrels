@@ -10,7 +10,6 @@ const Sightings = function(){
 Sightings.prototype.setUpEventListeners = function(){
   PubSub.subscribe('SightingFormView:sighting-submitted', (event) => {
     const newSighting = event.detail;
-    console.log(newSighting);
     this.add(newSighting);
   });
 
@@ -28,9 +27,8 @@ Sightings.prototype.getSeededData = function(){
       this.items = sightings;
       this.getDefaultYear(this.defaultYear)
       PubSub.publish('Sightings:all-map-data-loaded', this.items);
-      this.earliestYear = this.getEarliestYear(this.items);
-      this.latestYear = this.getLatestYear(this.items);
-      PubSub.publish('Sightings:earliest/latest-year-data-ready', [this.earliestYear, this.latestYear]);
+      this.years = this.getAllYears(this.items);
+      PubSub.publish('Sightings:unique-years-array-ready', this.years);
     })
     .catch((err) => console.error(err));
 }
@@ -125,14 +123,14 @@ Sightings.prototype.getAllYears = function(data){
   return allYears.filter(year => year != "");
 }
 
-Sightings.prototype.getEarliestYear = function(data){
-  const allYears = this.getAllYears(data);
-  return Math.min(...allYears);
-}
-
-Sightings.prototype.getLatestYear = function(data){
-  const allYears = this.getAllYears(data);
-  return Math.max(...allYears);
-}
+// Sightings.prototype.getEarliestYear = function(data){
+//   const allYears = this.getAllYears(data);
+//   return Math.min(...allYears);
+// }
+//
+// Sightings.prototype.getLatestYear = function(data){
+//   const allYears = this.getAllYears(data);
+//   return Math.max(...allYears);
+// }
 
 module.exports = Sightings;
