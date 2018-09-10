@@ -29,7 +29,10 @@ SightingFormView.prototype.setUpEventListeners = function(){
       "State/Province": form['country-field'].value
     };
 
-    console.log("new sighting is:", newSighting);
+    if (this.lat.length === 0 || this.long.length === 0) {
+    alert ("Please click on the map to place a location") }
+    else {
+    console.log(newSighting)};
 
     // PubSub.publish('SightingFormView:sighting-submitted', newSighting);
     // form.reset();

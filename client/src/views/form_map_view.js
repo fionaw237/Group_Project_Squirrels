@@ -8,8 +8,6 @@ const FormMapView = function(container){
   this.osmLayer = new L.TileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png");
   this.map.setView(this.coords, 5).addLayer(this.osmLayer); // note '5' is zoom level
   this.coords = [];
-
-setTimeout(this.map.invalidateSize.bind(this.map))
 }
 
 FormMapView.prototype.bindEvents = function () {
