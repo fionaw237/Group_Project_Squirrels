@@ -21,8 +21,8 @@ SightingFormView.prototype.setUpEventListeners = function(){
     const newSighting = {
       "Startdate": form['date-field'].value,
       "name": form['name-field'].value,
-      "Startdateyear": null,
-      "Startdatemonth": null,
+      "Startdateyear": form['date-field'].value.slice(0,4),
+      "Startdatemonth": form['date-field'].value.slice(5,7),
       "Latitude(WGS84)": this.lat,
       "Longitude(WGS84)": this.long,
       "Individualcount": form['count-field'].value,
