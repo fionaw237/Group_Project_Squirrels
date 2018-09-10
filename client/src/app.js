@@ -57,4 +57,5 @@ const handleInfoButtonClick = function () {
 const handleSpanCloseClick = function () {
   document.getElementById('myPopUp').style.display = "none";
   document.getElementById('map-container').style.display = "none";
+  window.location.replace("/")
 };
