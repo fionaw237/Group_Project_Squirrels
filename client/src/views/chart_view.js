@@ -1,5 +1,6 @@
-const PubSub = require('../helpers/pub_sub.js')
-const Highcharts = require('highcharts')
+const PubSub = require('../helpers/pub_sub.js');
+const Highcharts = require('highcharts');
+const TotalView = require('./total_view.js');
 
 const ChartView = function(container){
   this.container = container;
@@ -10,11 +11,8 @@ ChartView.prototype.bindEvents = function() {
 
     PubSub.subscribe('Sightings:selected-year-chart-data-ready', (event) => {
       this.chartData = event.detail;
-
-        this.renderChart();
-
-    })
-
+      this.renderChart();
+    });
 
 }
 
@@ -57,7 +55,7 @@ const options = {
   tooltip: {
     headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
     pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-      '<td style="padding:0"><b>{point.y} squirrels</b></td></tr>',
+      '<td style="padding:0"><b>{point.y} sightings</b></td></tr>',
     footerFormat: '</table>',
     shared: true,
     useHTML: true
@@ -74,6 +72,10 @@ const options = {
 };
 
 Highcharts.chart(this.container, options)
+
+const totalView = new TotalView(this.container);
+totalView.bindEvents();
 };
+
 
 module.exports = ChartView;

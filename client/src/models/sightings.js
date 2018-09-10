@@ -48,6 +48,7 @@ Sightings.prototype.getPlottingData = function(){
     PubSub.publish('Sightings:selected-year-map-data-ready', this.sightingsByYear);
     const chartDataArray = this.createChartArray();
     PubSub.publish('Sightings:selected-year-chart-data-ready', chartDataArray);
+    PubSub.publish('Sightings:total-sightings-number-ready', this.sightingsByYear.length);
 
     PubSub.subscribe('SelectView:chosen-country', (event) => {
 
@@ -61,7 +62,8 @@ Sightings.prototype.getPlottingData = function(){
         var mapData = this.filterByCountry(chosenOption);
       }
       PubSub.publish('Sightings:selected-year-chart-data-ready', chartData);
-      PubSub.publish('Sightings:selected-year-map-data-ready', mapData)
+      PubSub.publish('Sightings:selected-year-map-data-ready', mapData);
+      PubSub.publish('Sightings:total-sightings-number-ready', mapData.length);
     });
   });
 
