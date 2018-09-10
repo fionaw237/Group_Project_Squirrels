@@ -8,8 +8,14 @@ const ChartView = require('./views/chart_view.js');
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  const button = document.querySelector('#button-add-sighting');
-  button.addEventListener('click', handleButtonClick);
+  const addButton = document.querySelector('#button-add-sighting');
+  addButton.addEventListener('click', handleAddButtonClick);
+
+  const infoButton = document.querySelector('#button-info');
+  infoButton.addEventListener('click', handleInfoButtonClick);
+
+  const spanClose = document.querySelector('.close');
+  spanClose.addEventListener('click', handleSpanCloseClick);
 
   const select = document.querySelector('#country-select');
   const selectView = new SelectView(select);
@@ -37,7 +43,18 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-const handleButtonClick = function () {
+const handleAddButtonClick = function () {
 document.getElementById('popup-container').style.display = "block";
 document.getElementById('map-container').style.display = "none";
+};
+
+const handleInfoButtonClick = function () {
+  document.getElementById('myPopUp')
+  .style.display = "block";
+  document.getElementById('map-container').style.display = "none";
+};
+
+const handleSpanCloseClick = function () {
+  document.getElementById('myPopUp').style.display = "none";
+  document.getElementById('map-container').style.display = "none";
 };
