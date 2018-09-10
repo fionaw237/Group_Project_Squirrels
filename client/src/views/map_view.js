@@ -13,7 +13,7 @@ const MapView = function(container){
 
 
 MapView.prototype.bindEvents = function () {
-console.log('in mapview bindEvents');
+
   PubSub.subscribe('Sightings:selected-year-map-data-ready', (event) => {
     const sightings = event.detail;
 
