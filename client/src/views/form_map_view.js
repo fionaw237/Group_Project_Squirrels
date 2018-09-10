@@ -63,9 +63,5 @@ FormMapView.prototype.getLocation =function() {
         this.map.locate({setView: true, maxZoom: 16});
      };
 
-FormMapView.prototype.refreshMap = function () {
-
-};
-
 
 module.exports = FormMapView;
