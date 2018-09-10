@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const button = document.querySelector('#button-add-sighting');
   button.addEventListener('click', handleButtonClick);
 
+
   const select = document.querySelector('#country-select');
   const selectView = new SelectView(select);
   selectView.setUpEventListeners();
@@ -45,5 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
 const handleButtonClick = function () {
 document.getElementById('popup-container').style.display = "block";
 document.getElementById('map-container').style.display = "none";
-
 };
+
+const handleLocateMeButtonClick = function () {
+console.log("clicked");
+}
