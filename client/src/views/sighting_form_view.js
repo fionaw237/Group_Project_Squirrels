@@ -33,7 +33,7 @@ SightingFormView.prototype.setUpEventListeners = function(){
       "Latitude(WGS84)": this.lat,
       "Longitude(WGS84)": this.long,
       "Individualcount": form['count-field'].value,
-      "State/Province": form['country-field'].value
+      "State/Province": this.country
     };
 
     if (this.lat.length === 0 || this.long.length === 0) {
@@ -41,14 +41,15 @@ SightingFormView.prototype.setUpEventListeners = function(){
 
     else if( confirm(`Do you wish to submit:
       Spotter Name: ${form['name-field'].value},
-      Spotted In: ${this.country},
+      Spotted In: ${this.country} at latitude ${this.lat}, longitude ${this.long},
       Spotted On: ${form['date-field'].value},
       Number of Squirrels Spotted: ${form['count-field'].value}`))
       {
         // PubSub.publish('SightingFormView:sighting-submitted', newSighting);
         // form.reset();
         // window.location.replace("/");
-        console.log(newSighting); }
+        console.log(newSighting);
+      alert ("Squirrel Sighting Submitted - Super!") }
     else {alert ("Sighting Not Submitted!")}
   });
 };
