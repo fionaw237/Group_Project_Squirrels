@@ -45,10 +45,10 @@ SightingFormView.prototype.setUpEventListeners = function(){
       Spotted On: ${form['date-field'].value},
       Number of Squirrels Spotted: ${form['count-field'].value}`))
       {
-        // PubSub.publish('SightingFormView:sighting-submitted', newSighting);
-        // form.reset();
-        // window.location.replace("/");
-        console.log(newSighting);
+        PubSub.publish('SightingFormView:sighting-submitted', newSighting);
+        form.reset();
+        window.location.replace("/");
+
       alert ("Squirrel Sighting Submitted - Super!") }
     else {alert ("Sighting Not Submitted!")}
   });
