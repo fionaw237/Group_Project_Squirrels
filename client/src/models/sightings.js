@@ -41,8 +41,9 @@ Sightings.prototype.getSeededData = function(){
     .get()
     .then((sightings) => {
       this.items = sightings;
-      this.getDefaultYear(this.defaultYear)
+      this.sightingsByYear = this.getDefaultYear(this.defaultYear)
       PubSub.publish('Sightings:all-map-data-loaded', this.items);
+      PubSub.publish('Sightings:selected-year-data-ready', this.sightingsByYear);
       this.years = this.getAllYears(this.items);
       PubSub.publish('Sightings:unique-years-array-ready', this.years);
     })
@@ -62,7 +63,6 @@ Sightings.prototype.add = function(item){
 Sightings.prototype.getDefaultYear = function(year){
   PubSub.subscribe('Sightings:all-map-data-loaded', () => {
     this.sightingsByYear = this.items.filter(item => item.Startdateyear === year);
-    PubSub.publish('Sightings:selected-year-data-ready', this.sightingsByYear);
   })
 }
 
@@ -74,6 +74,7 @@ Sightings.prototype.refilterByYear = function(year){
 Sightings.prototype.getPlottingData = function(){
 
   if (this.chosenOption === "All"){
+    console.log(this.chartDataArray, this.sightingsByYear);
     var chartData = this.chartDataArray;
     var mapData = this.sightingsByYear;
   }

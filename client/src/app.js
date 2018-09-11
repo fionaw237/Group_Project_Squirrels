@@ -45,7 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const sightingsData = new Sightings();
   sightingsData.setUpEventListeners();
-  sightingsData.getPlottingData();
   sightingsData.defaultYear = "2017";
   sightingsData.getSeededData();
   sightingsData.getCountryName();
