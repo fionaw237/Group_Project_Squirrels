@@ -1,6 +1,7 @@
 const PubSub = require('../helpers/pub_sub.js');
 const Highcharts = require('highcharts');
 const TotalView = require('./total_view.js');
+const YearView = require('./year_view.js');
 
 const ChartView = function(container){
   this.container = container;
@@ -13,11 +14,9 @@ ChartView.prototype.bindEvents = function() {
       this.chartData = event.detail;
       this.renderChart();
     });
-
 }
 
 ChartView.prototype.renderChart = function () {
-
 
 const options = {
   chart: {
@@ -72,10 +71,8 @@ const options = {
 };
 
 Highcharts.chart(this.container, options)
-
-const totalView = new TotalView(this.container);
-totalView.bindEvents();
 };
+
 
 
 module.exports = ChartView;

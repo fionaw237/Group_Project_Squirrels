@@ -79,6 +79,7 @@ Sightings.prototype.getPlottingData = function(){
     var chartData = this.getChartDataByCountry(this.chartDataArray, this.chosenOption);
     var mapData = this.filterByCountry(this.chosenOption);
   }
+
   PubSub.publish('Sightings:selected-year-chart-data-ready', chartData);
   PubSub.publish('Sightings:selected-year-map-data-ready', mapData);
   PubSub.publish('Sightings:total-sightings-number-ready', mapData.length);
