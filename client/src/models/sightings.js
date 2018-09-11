@@ -1,14 +1,15 @@
 const Request = require('../helpers/request.js');
 const PubSub = require('../helpers/pub_sub.js');
 
-const Sightings = function(){
+const Sightings = function(defaultYear){
+  this.defaultYear = defaultYear;
   this.items = [];
   this.request = new Request('/api/sightings');
   this.sightingsByYear = [];
   this.chosenOption = "All";
 };
 
-Sightings.prototype.setUpEventListeners = function(){
+Sightings.prototype.bindEvents = function(){
   PubSub.subscribe('SightingFormView:sighting-submitted', (event) => {
     const newSighting = event.detail;
     this.add(newSighting);
@@ -17,15 +18,12 @@ Sightings.prototype.setUpEventListeners = function(){
   PubSub.subscribe('SliderView:selected-year-ready', (event) => {
     const selectedYear = event.detail;
     this.refilterByYear(selectedYear)
+    PubSub.publish('Sightings:selected-year-data-ready', this.sightingsByYear);
   })
 
   PubSub.subscribe('Sightings:selected-year-data-ready', (event) => {
     this.sightingsByYear = event.detail;
-    console.log("after filtering:", this.sightingsByYear);
-    PubSub.publish('Sightings:selected-year-map-data-ready', this.sightingsByYear);
     this.chartDataArray = this.createChartArray();
-    PubSub.publish('Sightings:selected-year-chart-data-ready', this.chartDataArray);
-    PubSub.publish('Sightings:total-sightings-number-ready', this.sightingsByYear.length);
     this.getPlottingData();
   });
 
@@ -36,7 +34,7 @@ Sightings.prototype.setUpEventListeners = function(){
 
 };
 
-Sightings.prototype.getSeededData = function(){
+Sightings.prototype.setUpInitialData = function(){
   this.request
     .get()
     .then((sightings) => {
@@ -68,7 +66,6 @@ Sightings.prototype.getDefaultYear = function(year){
 
 Sightings.prototype.refilterByYear = function(year){
   this.sightingsByYear = this.items.filter(item => item.Startdateyear === year);
-  PubSub.publish('Sightings:selected-year-data-ready', this.sightingsByYear);
 }
 
 Sightings.prototype.getPlottingData = function(){
@@ -96,27 +93,31 @@ Sightings.prototype.filterByMonth = function(month, data){
 }
 
 Sightings.prototype.createChartArray = function(){
-  const months = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
   const countries = ["Scotland", "England", "Northern Ireland", "Wales"];
-
   const dataArray = [];
 
   countries.forEach((country) => {
-    const countryObject = {
-      name: `${country}`,
-      data: []
-    };
-
-    const countrySightingsData = this.filterByCountry(country);
-
-    months.forEach((month) => {
-      const sightingsByMonth = this.filterByMonth(month,countrySightingsData);
-      countryObject.data.push(sightingsByMonth)
-    });
-
-    dataArray.push(countryObject)
+    const countryObject = this.createCountryObject(country);
+    dataArray.push(countryObject);
   });
   return dataArray;
+}
+
+Sightings.prototype.createCountryObject = function(country){
+  const countryObject = {
+    name: `${country}`,
+    data: []
+  };
+
+  const countrySightingsData = this.filterByCountry(country);
+  const months = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+
+  months.forEach((month) => {
+    const sightingsByMonth = this.filterByMonth(month,countrySightingsData);
+    countryObject.data.push(sightingsByMonth)
+  });
+
+  return countryObject;
 }
 
 Sightings.prototype.getChartDataByCountry = function(array, value){
