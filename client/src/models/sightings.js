@@ -18,7 +18,6 @@ Sightings.prototype.bindEvents = function(){
   PubSub.subscribe('SliderView:selected-year-ready', (event) => {
     const selectedYear = event.detail;
     this.sightingsByYear = this.refilterByYear(selectedYear);
-    console.log(this.sightingsByYear);
     PubSub.publish('Sightings:selected-year-data-ready', this.sightingsByYear);
   })
 
