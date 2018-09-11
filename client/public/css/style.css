@@ -16,7 +16,7 @@ background-color: black;}
 
 #header-container img{
   display: inline;
-  width: 8%
+  width: 5%
 }
 
 
@@ -146,7 +146,7 @@ footer{
   appearance: none;
   width: 25px; /* Set a specific slider handle width */
   height: 25px; /* Slider handle height */
-  background: red; /* Green background */
+  background: #DE5E14; /* Slider button background */
   cursor: pointer; /* Cursor on hover */
 }
 
