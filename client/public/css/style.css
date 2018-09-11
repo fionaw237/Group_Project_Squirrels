@@ -123,7 +123,6 @@ footer{
   background-color: blue;
   color: white;
   font-size: 40px;
-
 }
 
 
@@ -131,6 +130,7 @@ footer{
   flex: 1;
   align-items: baseline;
   border: 1px solid black;
+  margin-right: 4px;
 }
 
 /* The slider itself */
