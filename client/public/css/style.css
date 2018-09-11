@@ -1,13 +1,35 @@
 body{
-  /* overflow: hidden; */
+background-color: black;}
+
+
+#header-container{
+  flex-direction: row;
+  text-align: center;
+}
+
+#header-container h1{
+  display: inline;
+  color:white;
+  text-align: center;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
+#header-container img{
+  display: inline;
+  width: 5%
 }
 
 
 #flex-container{
   display: flex;
   flex-wrap: wrap;
-  background-color: DodgerBlue;
+  margin-bottom: 60px;
+}
 
+#select-label, text{
+  margin: 5px;
+  font-size: 0.75em;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
 }
 
 
@@ -24,10 +46,6 @@ body{
   height:67%;
   overflow:auto
   background-color:#fefefe;
-  background-color:#fefefe;
-  /* background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0.4); */
-  /* background-color:#313131; */
   opacity:.95;
   margin: 24px 122px 20px;
   border: 1px solid #888;
@@ -42,8 +60,6 @@ body{
 
 #map-container{
   flex: 1 0 500px;
-  /* background-color: #f1f1f1; */
-  /* width: 500px; */
   height: 500px;
   margin: 10px;
   text-align: center;
@@ -54,7 +70,8 @@ body{
 
 #chart-container-wrapper{
   flex: 1 0 500px;
-  background-color: #f1f1f1;
+  background-color: white;
+  /* background-color: #f1f1f1; */
   width: 500px;
   height: 500px;
   margin: 10px;
@@ -64,6 +81,7 @@ body{
 
 
 footer{
+  z-index: 50;
   position:fixed;
   bottom: 0; left: 0;
   width: 100%;
@@ -71,6 +89,7 @@ footer{
 
 #footer-container{
   display: flex;
+    background-color: black;
 }
 
 #button-add-sighting {
@@ -79,8 +98,9 @@ footer{
   width: 60px;
   border-radius: 50%;
   background-color: red;
-  font-colour: white;
-  font-size: 30px;
+  color: white;
+  font-size: 40px;
+  line-height: 0px;
 }
 
 #button-info {
@@ -89,8 +109,9 @@ footer{
   width: 60px;
   border-radius: 50%;
   background-color: blue;
-  font-colour: white;
-  font-size: 30px;
+  color: white;
+  font-size: 40px;
+
 }
 
 
@@ -102,11 +123,12 @@ footer{
 
 /* The slider itself */
 #year-slider {
+  margin-top: 15px;
   -webkit-appearance: none;  /* Override default CSS styles */
   appearance: none;
   width: 100%; /* Full-width */
   height: 25px; /* Specified height */
-  background: #d3d3d3; /* Grey background */
+  background: white; /* Grey background */
   outline: none; /* Remove outline */
   opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
   -webkit-transition: .2s; /* 0.2 seconds transition on hover */
@@ -124,7 +146,7 @@ footer{
   appearance: none;
   width: 25px; /* Set a specific slider handle width */
   height: 25px; /* Slider handle height */
-  background: #4CAF50; /* Green background */
+  background: #DE5E14; /* Slider button background */
   cursor: pointer; /* Cursor on hover */
 }
 
