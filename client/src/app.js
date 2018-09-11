@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
   sightingsData.getPlottingData();
   sightingsData.filterByYear("2017");
   sightingsData.getSeededData();
+  sightingsData.getCountryName();
 
 });
 
