@@ -1,5 +1,17 @@
 body{
-  /* overflow: hidden; */
+background-color: black;}
+
+
+#header-container h1{
+  display: inline;
+  color:white;
+  text-align: center;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
+#header-container img{
+  display: inline;
+  width: 5%;
 }
 
 
