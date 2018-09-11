@@ -46,11 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const sliderView = new SliderView(slider);
   sliderView.bindEvents();
 
-  const sightingsData = new Sightings();
-  sightingsData.setUpEventListeners();
-  sightingsData.getPlottingData();
-  sightingsData.defaultYear = "2017";
-  sightingsData.getSeededData();
+  const defaultYear = "2017"
+  const sightingsData = new Sightings(defaultYear);
+  sightingsData.bindEvents();
+  sightingsData.setUpInitialData();
   sightingsData.getCountryName();
 
 });

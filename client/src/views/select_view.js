@@ -9,7 +9,7 @@ const SelectView = function (element) {
 SelectView.prototype.setUpEventListeners = function () {
   this.element.addEventListener('change', (event) => {
     const chosenOption = event.target.value;
-    PubSub.publish('SelectView:chosen-country', chosenOption);
+    PubSub.publish('SelectView:chosen-country-ready', chosenOption);
   });
 };
 
