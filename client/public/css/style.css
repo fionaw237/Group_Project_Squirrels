@@ -168,13 +168,13 @@ footer{
   cursor: pointer;
 }
 
-#year-display {
+#year-container {
   margin-left: 40px;
   float: left;
   padding-top: 20px;
 }
 
-#total-display {
+#total-container {
   float: right;
   margin-right: 40px;
   padding-top: 20px;

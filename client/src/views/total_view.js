@@ -11,13 +11,11 @@ TotalView.prototype.bindEvents = function(){
     this.sightings = event.detail;
     this.render();
   });
-
 }
 
 TotalView.prototype.render = function(){
   this.container.innerHTML = "";
   const totalDisplay = document.createElement('text');
-  totalDisplay.id = "total-display";
   totalDisplay.textContent = `Total sightings: ${this.sightings}`;
   this.container.appendChild(totalDisplay);
 }

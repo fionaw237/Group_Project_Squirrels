@@ -16,7 +16,6 @@ YearView.prototype.bindEvents = function(){
 YearView.prototype.render = function(){
     this.container.innerHTML = "";
     const yearDisplay = document.createElement('text');
-    yearDisplay.id = "year-display";
     yearDisplay.textContent = `Year: ${this.currentYear}`;
     this.container.appendChild(yearDisplay);
 }
