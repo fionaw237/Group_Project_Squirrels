@@ -17,7 +17,8 @@ Sightings.prototype.bindEvents = function(){
 
   PubSub.subscribe('SliderView:selected-year-ready', (event) => {
     const selectedYear = event.detail;
-    this.refilterByYear(selectedYear)
+    this.sightingsByYear = this.refilterByYear(selectedYear);
+    console.log(this.sightingsByYear);
     PubSub.publish('Sightings:selected-year-data-ready', this.sightingsByYear);
   })
 
@@ -64,7 +65,7 @@ Sightings.prototype.getDefaultYearData = function(year){
 }
 
 Sightings.prototype.refilterByYear = function(year){
-  this.sightingsByYear = this.items.filter(item => item.Startdateyear === year);
+  return this.items.filter(item => item.Startdateyear === year);
 }
 
 Sightings.prototype.getPlottingData = function(){
