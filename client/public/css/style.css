@@ -18,8 +18,7 @@ background-color: black;}
 #flex-container{
   display: flex;
   flex-wrap: wrap;
-  background-color: DodgerBlue;
-
+  margin-bottom: 60px;
 }
 
 
@@ -83,6 +82,7 @@ footer{
 
 #footer-container{
   display: flex;
+    background-color: black;
 }
 
 #button-add-sighting {
@@ -114,11 +114,12 @@ footer{
 
 /* The slider itself */
 #year-slider {
+  margin-top: 15px;
   -webkit-appearance: none;  /* Override default CSS styles */
   appearance: none;
   width: 100%; /* Full-width */
   height: 25px; /* Specified height */
-  background: #d3d3d3; /* Grey background */
+  background: white; /* Grey background */
   outline: none; /* Remove outline */
   opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
   -webkit-transition: .2s; /* 0.2 seconds transition on hover */
