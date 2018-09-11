@@ -30,13 +30,13 @@ MapView.prototype.bindEvents = function () {
 
       var customOptions =
       {
-        'maxWidth': '500',
+        'maxWidth': '400',
         'className': "map-pop-up"
       }
 
       const popUpLabel = this.getPopUpLabel(sighting);
 
-      L.circleMarker(coords, {
+      L.circleMarker(coords, { "radius": "5", "color": "#DE5E14"
       }).addTo(this.markerGroup).bindPopup(popUpLabel, customOptions)
       .openPopup();
 
@@ -51,7 +51,7 @@ MapView.prototype.getPopUpLabel = function(sighting){
 
   var label = ``;
   const categories = [["Startdate", "Date"], ["Individualcount", "Individuals"], ["Latitude(WGS84)", "Latitude"],
-   ["Longitude(WGS84)", "Longitude"]];
+   ["Longitude(WGS84)", "Longitude"], ["name", "Spotted by"]];
   categories.forEach((category) => {
     if (sighting[category[0]]){
       label += `${category[1]}: ${sighting[category[0]]}, `
