@@ -14,7 +14,6 @@ SliderView.prototype.bindEvents = function(){
 
     this.element.addEventListener('change', (event) => {
       const selectedYear = event.target.value;
-      console.log(selectedYear);
       PubSub.publish('SliderView:selected-year-ready', selectedYear);
     })
 
