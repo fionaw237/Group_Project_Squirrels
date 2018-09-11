@@ -259,11 +259,12 @@ input:hover{
 #year-container {
   margin-left: 40px;
   float: left;
-  padding-top: 20px;
+  padding-top: 10px;
 }
 
 #total-container {
   float: right;
   margin-right: 40px;
   padding-top: 20px;
+  padding-bottom: 20px;
 }

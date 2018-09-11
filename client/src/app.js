@@ -69,15 +69,21 @@ document.addEventListener('DOMContentLoaded', () => {
 const handleAddButtonClick = function () {
 document.getElementById('popup-container').style.display = "block";
 document.getElementById('myPopUp').style.display = "none";
-document.getElementById('map-container').style.display = "none";
+document.getElementById('map-container').innerHTML = "";
+document.getElementById('chart-container-wrapper').innerHTML = "";
+document.getElementById('chart-container-wrapper').style.backgroundColor = "#2B1403";
+document.getElementById('map-container').style.backgroundColor = "#2B1403";
 };
 
 
 const handleInfoButtonClick = function () {
   document.getElementById('myPopUp')
   .style.display = "block";
-  document.getElementById('popup-container').style.display = "none";
-  document.getElementById('map-container').style.display = "none";
+  document.getElementById('popup-container').style.display = "";
+  document.getElementById('map-container').innerHTML= "";
+  document.getElementById('chart-container-wrapper').innerHTML = "";
+  document.getElementById('chart-container-wrapper').style.backgroundColor = "#2B1403";
+  document.getElementById('map-container').style.backgroundColor = "#2B1403";
 };
 
 const handleSpanCloseClick = function () {
