@@ -80,8 +80,6 @@ Sightings.prototype.getPlottingData = function(){
     var mapData = this.filterByCountry(this.chosenOption);
   }
 
-  const currentYear = mapData[0].Startdateyear;
-
   PubSub.publish('Sightings:selected-year-chart-data-ready', chartData);
   PubSub.publish('Sightings:selected-year-map-data-ready', mapData);
   PubSub.publish('Sightings:total-sightings-number-ready', mapData.length);
