@@ -28,8 +28,17 @@ MapView.prototype.bindEvents = function () {
       const long = sighting["Longitude(WGS84)"];
       const coords = [lat, long];
 
-      L.circleMarker(coords, {
-      }).addTo(this.markerGroup);
+      var customOptions =
+      {
+        'maxWidth': '400',
+        'className': "map-pop-up"
+      }
+
+      const popUpLabel = this.getPopUpLabel(sighting);
+
+      L.circleMarker(coords, { "radius": "5", "color": "#DE5E14"
+      }).addTo(this.markerGroup).bindPopup(popUpLabel, customOptions)
+      .openPopup();
 
     });
 
@@ -37,6 +46,21 @@ MapView.prototype.bindEvents = function () {
   });
 
 };
+
+MapView.prototype.getPopUpLabel = function(sighting){
+
+  var label = ``;
+  const categories = [["Startdate", "Date"], ["Individualcount", "Individuals"], ["Latitude(WGS84)", "Latitude"],
+   ["Longitude(WGS84)", "Longitude"], ["name", "Spotted by"]];
+  categories.forEach((category) => {
+    if (sighting[category[0]]){
+      label += `${category[1]}: ${sighting[category[0]]}, `
+    }
+  });
+
+  label = label.slice(0, -2);
+  return label;
+}
 
 
 module.exports = MapView;
