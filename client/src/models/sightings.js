@@ -5,6 +5,7 @@ const Sightings = function(){
   this.items = [];
   this.request = new Request('/api/sightings');
   this.sightingsByYear = [];
+  this.chosenOption = "All";
 };
 
 Sightings.prototype.setUpEventListeners = function(){
@@ -17,6 +18,21 @@ Sightings.prototype.setUpEventListeners = function(){
     const selectedYear = event.detail;
     this.refilterByYear(selectedYear)
   })
+
+  PubSub.subscribe('Sightings:selected-year-data-ready', (event) => {
+    this.sightingsByYear = event.detail;
+    console.log("after filtering:", this.sightingsByYear);
+    PubSub.publish('Sightings:selected-year-map-data-ready', this.sightingsByYear);
+    this.chartDataArray = this.createChartArray();
+    PubSub.publish('Sightings:selected-year-chart-data-ready', this.chartDataArray);
+    PubSub.publish('Sightings:total-sightings-number-ready', this.sightingsByYear.length);
+    this.getPlottingData();
+  });
+
+  PubSub.subscribe('SelectView:chosen-country', (event) => {
+    this.chosenOption = event.detail;
+    this.getPlottingData();
+  });
 
 };
 
@@ -56,30 +72,18 @@ Sightings.prototype.refilterByYear = function(year){
 }
 
 Sightings.prototype.getPlottingData = function(){
-  PubSub.subscribe('Sightings:selected-year-data-ready', (event) => {
-    this.sightingsByYear = event.detail;
-    PubSub.publish('Sightings:selected-year-map-data-ready', this.sightingsByYear);
-    const chartDataArray = this.createChartArray();
-    PubSub.publish('Sightings:selected-year-chart-data-ready', chartDataArray);
-    PubSub.publish('Sightings:total-sightings-number-ready', this.sightingsByYear.length);
 
-    PubSub.subscribe('SelectView:chosen-country', (event) => {
-
-      const chosenOption = event.detail;
-      if (chosenOption === "All"){
-        var chartData = chartDataArray;
-        var mapData = this.sightingsByYear;
-      }
-      else {
-        var chartData = this.getChartDataByCountry(chartDataArray, chosenOption);
-        var mapData = this.filterByCountry(chosenOption);
-      }
-      PubSub.publish('Sightings:selected-year-chart-data-ready', chartData);
-      PubSub.publish('Sightings:selected-year-map-data-ready', mapData);
-      PubSub.publish('Sightings:total-sightings-number-ready', mapData.length);
-    });
-  });
-
+  if (this.chosenOption === "All"){
+    var chartData = this.chartDataArray;
+    var mapData = this.sightingsByYear;
+  }
+  else {
+    var chartData = this.getChartDataByCountry(this.chartDataArray, this.chosenOption);
+    var mapData = this.filterByCountry(this.chosenOption);
+  }
+  PubSub.publish('Sightings:selected-year-chart-data-ready', chartData);
+  PubSub.publish('Sightings:selected-year-map-data-ready', mapData);
+  PubSub.publish('Sightings:total-sightings-number-ready', mapData.length);
 };
 
 Sightings.prototype.filterByCountry = function(country){
