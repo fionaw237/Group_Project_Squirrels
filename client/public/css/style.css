@@ -75,7 +75,7 @@ background-color: black;}
   height: 500px;
   margin: 10px;
   text-align: center;
-  font-size: 30px;
+  font-size: 15px;
   position: relative;
 }
 
@@ -109,7 +109,7 @@ footer{
   height: 60px;
   width: 60px;
   border-radius: 50%;
-  background-color: red;
+  background-color: #DE5E14;
   color: white;
   font-size: 40px;
   line-height: 0px;
@@ -265,9 +265,4 @@ input:hover{
   float: right;
   margin-right: 40px;
   padding-top: 20px;
-}
-
-.map-pop-up{
-  font-size: 15px;
-
 }

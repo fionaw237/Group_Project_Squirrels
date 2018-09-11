@@ -30,8 +30,7 @@ MapView.prototype.bindEvents = function () {
 
       var customOptions =
       {
-        'maxWidth': '400',
-        'className': "map-pop-up"
+        'maxWidth': '400'
       }
 
       const popUpLabel = this.getPopUpLabel(sighting);
@@ -39,6 +38,7 @@ MapView.prototype.bindEvents = function () {
       L.circleMarker(coords, { "radius": "5", "color": "#DE5E14"
       }).addTo(this.markerGroup).bindPopup(popUpLabel, customOptions)
       .openPopup();
+
 
     });
 
