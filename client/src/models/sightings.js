@@ -23,11 +23,10 @@ Sightings.prototype.bindEvents = function(){
 
   PubSub.subscribe('Sightings:selected-year-data-ready', (event) => {
     this.sightingsByYear = event.detail;
-    this.chartDataArray = this.createChartArray();
     this.getPlottingData();
   });
 
-  PubSub.subscribe('SelectView:chosen-country', (event) => {
+  PubSub.subscribe('SelectView:chosen-country-ready', (event) => {
     this.chosenOption = event.detail;
     this.getPlottingData();
   });
@@ -39,7 +38,7 @@ Sightings.prototype.setUpInitialData = function(){
     .get()
     .then((sightings) => {
       this.items = sightings;
-      this.sightingsByYear = this.getDefaultYear(this.defaultYear)
+      this.sightingsByYear = this.getDefaultYearData(this.defaultYear)
       PubSub.publish('Sightings:all-map-data-loaded', this.items);
       PubSub.publish('Sightings:selected-year-data-ready', this.sightingsByYear);
       this.years = this.getAllYears(this.items);
@@ -58,7 +57,7 @@ Sightings.prototype.add = function(item){
   .catch((err) => console.error(err));
 }
 
-Sightings.prototype.getDefaultYear = function(year){
+Sightings.prototype.getDefaultYearData = function(year){
   PubSub.subscribe('Sightings:all-map-data-loaded', () => {
     this.sightingsByYear = this.items.filter(item => item.Startdateyear === year);
   })
@@ -70,8 +69,9 @@ Sightings.prototype.refilterByYear = function(year){
 
 Sightings.prototype.getPlottingData = function(){
 
+  this.chartDataArray = this.createChartArray();
+
   if (this.chosenOption === "All"){
-    console.log(this.chartDataArray, this.sightingsByYear);
     var chartData = this.chartDataArray;
     var mapData = this.sightingsByYear;
   }
