@@ -167,3 +167,15 @@ footer{
   text-decoration: none;
   cursor: pointer;
 }
+
+#year-display {
+  margin-left: 40px;
+  float: left;
+  padding-top: 20px;
+}
+
+#total-display {
+  float: right;
+  margin-right: 40px;
+  padding-top: 20px;
+}

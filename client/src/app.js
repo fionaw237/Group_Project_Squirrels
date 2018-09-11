@@ -5,6 +5,8 @@ const FormMapView = require('./views/form_map_view.js');
 const SelectView = require('./views/select_view.js');
 const ChartView = require('./views/chart_view.js');
 const SliderView = require('./views/slider_view.js');
+const TotalView = require('./views/total_view.js');
+const YearView = require('./views/year_view.js');
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -38,15 +40,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const chartView = new ChartView(mainChart);
   chartView.bindEvents();
 
+  const defaultYear = "2017";
+
+  const yearContainer = document.querySelector('#year-container');
+  const yearView = new YearView(yearContainer, defaultYear);
+  yearView.bindEvents();
+
+  const totalContainer = document.querySelector('#total-container');
+  const totalView = new TotalView(totalContainer);
+  totalView.bindEvents();
+
   const mainMap = document.querySelector('#map-container');
   const mapView = new MapView(mainMap);
   mapView.bindEvents();
 
   const slider = document.querySelector('#year-slider');
-  const sliderView = new SliderView(slider);
+  const sliderView = new SliderView(slider, defaultYear);
   sliderView.bindEvents();
 
-  const defaultYear = "2017"
   const sightingsData = new Sightings(defaultYear);
   sightingsData.bindEvents();
   sightingsData.setUpInitialData();
