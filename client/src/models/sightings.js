@@ -123,14 +123,24 @@ Sightings.prototype.getAllYears = function(data){
   return allYears.filter(year => year != "");
 }
 
-// Sightings.prototype.getEarliestYear = function(data){
-//   const allYears = this.getAllYears(data);
-//   return Math.min(...allYears);
-// }
-//
-// Sightings.prototype.getLatestYear = function(data){
-//   const allYears = this.getAllYears(data);
-//   return Math.max(...allYears);
-// }
+Sightings.prototype.getCountryName = function () {
+  PubSub.subscribe('FormMapView:coords-ready', (event) => {
+    this.lat = event.detail[0];
+    this.long = event.detail[1];
+    this.getCountryFromAPI(this.lat, this.long);
+  });
+};
+
+Sightings.prototype.getCountryFromAPI = function (lat, long) {
+  const request = new Request(`http://api.geonames.org/countrySubdivisionJSON?lat=${lat}&lng=${long}&username=supersquirrels`);
+  request.get()
+      .then((data) => {
+        PubSub.publish('Sightings:Country-from-API', data.adminName1);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+};
+
 
 module.exports = Sightings;

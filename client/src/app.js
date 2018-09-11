@@ -1,6 +1,7 @@
 const Sightings = require('./models/sightings.js');
 const SightingFormView = require('./views/sighting_form_view.js');
 const MapView = require('./views/map_view.js');
+const FormMapView = require('./views/form_map_view.js');
 const SelectView = require('./views/select_view.js');
 const ChartView = require('./views/chart_view.js');
 const SliderView = require('./views/slider_view.js');
@@ -17,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const spanClose = document.querySelector('.close');
   spanClose.addEventListener('click', handleSpanCloseClick);
 
+
   const select = document.querySelector('#country-select');
   const selectView = new SelectView(select);
   selectView.setUpEventListeners();
@@ -24,6 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('#new-sighting-form');
   const sightingFormView = new SightingFormView(form);
   sightingFormView.setUpEventListeners();
+
+  const formMap = document.querySelector('#form-map-container');
+  const formMapView = new FormMapView(formMap);
+  formMapView.bindEvents();
 
   const mainChart = document.querySelector('#chart-container');
   const chartView = new ChartView(mainChart);
@@ -42,6 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
   sightingsData.getPlottingData();
   sightingsData.defaultYear = "2017";
   sightingsData.getSeededData();
+  sightingsData.getCountryName();
 
 });
 
@@ -50,6 +57,7 @@ const handleAddButtonClick = function () {
 document.getElementById('popup-container').style.display = "block";
 document.getElementById('map-container').style.display = "none";
 };
+
 
 const handleInfoButtonClick = function () {
   document.getElementById('myPopUp')
