@@ -46,6 +46,7 @@
     <div id="popupForm" class="popUp-content">
       <form id="new-sighting-form" method="post" name="form">
         <!-- <img id="close" src="images/3.png" onclick ="div_hide()"> -->
+        <span id="addClose" class="close">×</span>
         <h2>Add new sighting</h2>
         <hr>
         <label for="name-field">Name</label>
@@ -53,16 +54,14 @@
         <label for="date-field">Date</label>
         <input type="date" id="date-field" required/>
         <label for="count-field">Number of squirrels</label>
-        <input id="count-field" required/>
-        <button type="submit">Save sighting</button>
-        <span id="addClose" class="close">×</span>
+        <input type="number" min="1" id="count-field" required/>
+        <button type="submit" id="submit-button">Save sighting</button>
       </form>
-
-
-
   </div>
+  <button id="locate-me-button" > Locate Me! </button>
   <div id="form-map-container"></div>
-  <button id="locate-me-button"> Locate Me! </button>
+
+
 </div>
 
   <footer>
