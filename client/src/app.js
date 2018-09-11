@@ -15,8 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const infoButton = document.querySelector('#button-info');
   infoButton.addEventListener('click', handleInfoButtonClick);
 
-  const spanClose = document.querySelector('.close');
-  spanClose.addEventListener('click', handleSpanCloseClick);
+  const addClose = document.querySelector('#addClose');
+  addClose.addEventListener('click', handleSpanCloseClick);
+
+  const infoClose = document.querySelector('#infoClose');
+  infoClose.addEventListener('click', handleSpanCloseClick);
 
 
   const select = document.querySelector('#country-select');
@@ -55,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const handleAddButtonClick = function () {
 document.getElementById('popup-container').style.display = "block";
+document.getElementById('myPopUp').style.display = "none";
 document.getElementById('map-container').style.display = "none";
 };
 
@@ -62,11 +66,12 @@ document.getElementById('map-container').style.display = "none";
 const handleInfoButtonClick = function () {
   document.getElementById('myPopUp')
   .style.display = "block";
+  document.getElementById('popup-container').style.display = "none";
   document.getElementById('map-container').style.display = "none";
 };
 
 const handleSpanCloseClick = function () {
-  document.getElementById('myPopUp').style.display = "none";
-  document.getElementById('map-container').style.display = "none";
+  // document.getElementById('myPopUp').style.display = "none";
+  // document.getElementById('map-container').style.display = "none";
   window.location.replace("/")
 };

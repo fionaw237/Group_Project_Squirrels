@@ -32,9 +32,9 @@
   </div>
 
   <!-- Popup Div Starts Here -->
-  <div id="popup-container">
+  <div id="popup-container" class="popUp">
 
-    <div id="popupForm">
+    <div id="popupForm" class="popUp-content">
       <form id="new-sighting-form" method="post" name="form">
         <!-- <img id="close" src="images/3.png" onclick ="div_hide()"> -->
         <h2>Add new sighting</h2>
@@ -53,6 +53,7 @@
           <option value="Wales">Wales</option>
         </select>
         <button type="submit">Save sighting</button>
+        <span id="addClose" class="close">×</span>
       </form>
 
 
@@ -80,7 +81,7 @@
 
             <div class="popUp-content">
 
-              <span class="close">×</span>
+              <div id="infoClose" class="close">×</div>
               <p align="center"><iframe width="560" height="315" src="https://www.youtube.com/embed/aE3x3k_QpD4" frameborder="0"  allowfullscreen></iframe>
                 </p>
 
