@@ -255,6 +255,7 @@ input {
 
 input:hover{
     background-color: #FFE4C4;
+  }
 
 #year-container {
   margin-left: 40px;
@@ -265,6 +266,5 @@ input:hover{
 #total-container {
   float: right;
   margin-right: 40px;
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 10px;
 }
