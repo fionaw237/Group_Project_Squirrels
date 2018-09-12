@@ -5,7 +5,6 @@ const SelectView = function (element) {
 
 };
 
-
 SelectView.prototype.setUpEventListeners = function () {
   this.element.addEventListener('change', (event) => {
     const chosenOption = event.target.value;

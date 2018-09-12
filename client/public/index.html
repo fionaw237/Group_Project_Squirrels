@@ -42,19 +42,19 @@
 
   <!-- Popup Div Starts Here -->
   <div id="popup-container" class="popUp">
-
     <div id="popupForm" class="popUp-content">
+      <span id="addClose" class="close">×</span>
       <form id="new-sighting-form" method="post" name="form">
         <!-- <img id="close" src="images/3.png" onclick ="div_hide()"> -->
-        <span id="addClose" class="close">×</span>
+
         <h2>Add new sighting</h2>
         <hr>
         <label for="name-field">Name</label>
-        <input type="text" id="name-field" required/>
+        <input class="form-input" type="text" id="name-field" required/>
         <label for="date-field">Date</label>
-        <input type="date" id="date-field" required/>
+        <input class="form-input" type="date" id="date-field" required/>
         <label for="count-field">Number of squirrels</label>
-        <input type="number" min="1" id="count-field" required/>
+        <input class="form-input" type="number" min="1" id="count-field" required/>
         <button type="submit" id="submit-button">Save sighting</button>
       </form>
   </div>
@@ -68,9 +68,8 @@
     <div id="footer-container">
 
       <button id="button-add-sighting" >+</button>
-      <!-- <button id="button-add-sighting" onclick="window.location.href='form.html'">+</button> -->
 
-
+      <div id="slider-explainer"> Slide me to select a year </div>
 
       <div id="slider-container">
         <input type="range" min="1" max="100" value="50" class="slider" id="year-slider">
