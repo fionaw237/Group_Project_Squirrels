@@ -1,5 +1,6 @@
 body{
-background-color: black;}
+background-color: #2B1403;
+}
 
 
 #header-container{
@@ -9,7 +10,7 @@ background-color: black;}
 
 #header-container h1{
   display: inline;
-  color:white;
+  color: oldlace;
   text-align: center;
   font-family: 'M PLUS Rounded 1c', sans-serif;
 }
@@ -75,7 +76,7 @@ background-color: black;}
   height: 500px;
   margin: 10px;
   text-align: center;
-  font-size: 30px;
+  font-size: 15px;
   position: relative;
 }
 
@@ -101,7 +102,7 @@ footer{
 
 #footer-container{
   display: flex;
-    background-color: black;
+    background-color: #2B1403;
 }
 
 #button-add-sighting {
@@ -109,7 +110,7 @@ footer{
   height: 60px;
   width: 60px;
   border-radius: 50%;
-  background-color: red;
+  background-color: #DE5E14;
   color: white;
   font-size: 40px;
   line-height: 0px;
@@ -123,14 +124,14 @@ footer{
   background-color: blue;
   color: white;
   font-size: 40px;
-
 }
 
 
 #slider-container {
   flex: 1;
   align-items: baseline;
-  border: 1px solid black;
+  border: none;
+  margin-right: 4px;
 }
 
 /* The slider itself */
@@ -258,16 +259,12 @@ input:hover{
 #year-container {
   margin-left: 40px;
   float: left;
-  padding-top: 20px;
+  padding-top: 10px;
 }
 
 #total-container {
   float: right;
   margin-right: 40px;
   padding-top: 20px;
-}
-
-.map-pop-up{
-  font-size: 15px;
-
+  padding-bottom: 20px;
 }

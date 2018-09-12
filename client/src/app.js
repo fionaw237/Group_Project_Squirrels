@@ -67,18 +67,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 const handleAddButtonClick = function () {
-document.getElementById('popup-container').style.display = "block";
-document.getElementById('myPopUp').style.display = "none";
-document.getElementById('map-container').style.display = "none";
+  document.getElementById('popup-container').style.display = "block";
+  document.getElementById('myPopUp').style.display = "none";
+  formatBackground();
 };
 
 
 const handleInfoButtonClick = function () {
   document.getElementById('myPopUp')
   .style.display = "block";
-  document.getElementById('popup-container').style.display = "none";
-  document.getElementById('map-container').style.display = "none";
+  document.getElementById('popup-container').style.display = "";
+  formatBackground();
 };
+
+const formatBackground = function(){
+  const mapContainer = document.getElementById('map-container');
+  mapContainer.innerHTML = "";
+  mapContainer.style.backgroundColor = "#2B1403";
+  const chartContainerWrapper = document.getElementById('chart-container-wrapper');
+  chartContainerWrapper.innerHTML = "";
+  chartContainerWrapper.style.backgroundColor = "#2B1403";
+}
 
 const handleSpanCloseClick = function () {
   // document.getElementById('myPopUp').style.display = "none";
