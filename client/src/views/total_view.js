@@ -19,13 +19,6 @@ TotalView.prototype.render = function(){
   totalDisplay.textContent = `Total sightings: ${this.sightings}`;
   this.container.appendChild(totalDisplay);
 }
-//
-// TotalView.prototype.removeChildren = function(){
-//   while (this.container.children.length > 1){
-//     this.container.removeChild(this.container.lastChild)
-//   }
-// }
-
 
 
 module.exports = TotalView;
