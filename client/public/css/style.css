@@ -35,6 +35,7 @@ background-color: #2B1403;
 
 
 #popup-container{
+  border-radius: 15px;
   display:none;
   position:fixed;
   z-index: 10;
@@ -85,7 +86,7 @@ background-color: #2B1403;
 #chart-container-wrapper{
   border-radius: 15px;
   flex: 1 0 500px;
-  background-color: white;
+  background-color: oldlace;
   /* background-color: #f1f1f1; */
   width: 500px;
   height: 500px;
@@ -113,7 +114,7 @@ footer{
   width: 60px;
   border-radius: 50%;
   background-color: #DE5E14;
-  color: white;
+  color: oldlace;
   font-size: 40px;
   line-height: 0px;
 }
@@ -124,7 +125,7 @@ footer{
   width: 60px;
   border-radius: 50%;
   background-color: #2E8B57;
-  color: white;
+  color: oldlace;
   font-size: 40px;
 }
 
@@ -184,6 +185,7 @@ footer{
   overflow: auto;
   background-color: rgb(0,0,0);
   background-color: rgba(0,0,0,0.4);
+  border-radius:15px;
 }
 .popUp-content {
   background-color: #2E8B57;
@@ -191,9 +193,10 @@ footer{
   padding: 10px;
   border: 1px solid #888;
   width: 80%;
+  border-radius:15px;
 }
 .close {
-  color: #aaaaaa;
+  color: oldlace;
   float: right;
   font-size: 28px;
   font-weight: bold;
@@ -211,7 +214,7 @@ footer{
   margin-top:5px;
   background-color: #008B8B;
   border: none;
-  color: white;
+  color: oldlace;
   padding: 10px 16px;
   text-align: center;
   text-decoration: none;
@@ -224,9 +227,13 @@ footer{
     background-color: #538E64;
 }
 
+#popup-form{
+  border-radius: 15px;
+}
+
 #new-sighting-form{
-font-family: "Comic Sans MS", cursive, sans-serif;
-color: white;
+font-family: 'M PLUS Rounded 1c', sans-serif;
+color: oldlace;
 }
 
 #submit-button{
@@ -234,7 +241,7 @@ color: white;
   margin-top:5px;
   background-color: #008B8B;
   border: none;
-  color: white;
+  color: oldlace;
   padding: 5px 5px;
   text-align: center;
   text-decoration: none;
@@ -247,6 +254,10 @@ color: white;
 
 #submit-button:hover{
   background-color: #538E64;
+}
+
+.form-input{
+  background-color: oldlace;
 }
 
 input {
