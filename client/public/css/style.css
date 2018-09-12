@@ -72,6 +72,7 @@ background-color: #2B1403;
 }
 
 #map-container{
+  border-radius: 15px;
   flex: 1 0 500px;
   height: 500px;
   margin: 10px;
@@ -82,6 +83,7 @@ background-color: #2B1403;
 
 
 #chart-container-wrapper{
+  border-radius: 15px;
   flex: 1 0 500px;
   background-color: white;
   /* background-color: #f1f1f1; */
