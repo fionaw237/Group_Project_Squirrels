@@ -18,13 +18,8 @@ Sightings.prototype.bindEvents = function(){
   PubSub.subscribe('SliderView:selected-year-ready', (event) => {
     const selectedYear = event.detail;
     this.sightingsByYear = this.refilterByYear(selectedYear);
-    PubSub.publish('Sightings:selected-year-data-ready', this.sightingsByYear);
+    this.getPlottingData();;
   })
-
-  PubSub.subscribe('Sightings:selected-year-data-ready', (event) => {
-    this.sightingsByYear = event.detail;
-    this.getPlottingData();
-  });
 
   PubSub.subscribe('SelectView:chosen-country-ready', (event) => {
     this.chosenOption = event.detail;
@@ -40,7 +35,7 @@ Sightings.prototype.setUpInitialData = function(){
       this.items = sightings;
       this.sightingsByYear = this.getDefaultYearData(this.defaultYear)
       PubSub.publish('Sightings:all-map-data-loaded', this.items);
-      PubSub.publish('Sightings:selected-year-data-ready', this.sightingsByYear);
+      this.getPlottingData();
       this.years = this.getAllYears(this.items);
       PubSub.publish('Sightings:unique-years-array-ready', this.years);
     })
