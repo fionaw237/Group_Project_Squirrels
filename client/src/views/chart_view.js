@@ -20,7 +20,8 @@ ChartView.prototype.renderChart = function () {
 
 const options = {
   chart: {
-    type: 'column'
+    type: 'column',
+    backgroundColor: "oldlace"
   },
   title: {
     text: 'Squirrel Sightings'
