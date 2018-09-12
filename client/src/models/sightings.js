@@ -94,7 +94,7 @@ Sightings.prototype.filterByMonth = function(month, data){
 }
 
 Sightings.prototype.createChartArray = function(){
-  const countries = ["Scotland", "England", "Northern Ireland", "Wales"];
+  const countries = ["Scotland", "England", "Wales", "Northern Ireland"];
   const dataArray = [];
 
   countries.forEach((country) => {
