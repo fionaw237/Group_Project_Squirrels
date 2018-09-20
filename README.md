@@ -1,3 +1,5 @@
+This is a single page, full-stack Javascript application, which uses data on red squirrel sightings in the UK to illustrate population trends and educate the user about conservation.
+
 Use the following steps to get the app up and running.
 
 1. Install dependencies:
